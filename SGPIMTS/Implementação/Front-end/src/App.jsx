@@ -1,43 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import TableSelect from "./components/TableSelect";
+import DataTable from "./components/DataTable";
+import "./App.css";
 
-function App() {
-  const [clientes, setClientes] = useState([]);
+const App = () => {
+  const [data, setData] = useState([]);
+  const [selectedTable, setSelectedTable] = useState("clientes");
 
   useEffect(() => {
-    const fetchClientes = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/clientes');
-        const data = await response.json();
-        setClientes(data);
+        const response = await fetch(`http://localhost:5000/${selectedTable}`);
+        if (!response.ok) throw new Error("Erro na requisição");
+        const jsonData = await response.json();
+        setData(jsonData);
       } catch (error) {
-        setError(error);
+        console.error("Erro ao buscar dados:", error);
       }
     };
-    fetchClientes();
-  }, []);
+
+    fetchData();
+  }, [selectedTable]);
 
   return (
     <div>
-      <h1>Clientes</h1>
-            <table>
-              <tr>
-                <th>Nome:</th>
-                <th>Email:</th>
-                <th>Telefone:</th>
-                <th>Codigo do sistema:</th>
-              </tr>
-              {clientes.map(cliente => (
-              <tr>
-                <td>{cliente.nomeCliente}</td>
-                <td>{cliente.emailCliente}</td>
-                <td>{cliente.telefoneCliente}</td>
-                <td>{cliente.codigoSistema}</td>
-              </tr> 
-              ))}
-        </table>
+      <h1>Tabelas</h1>
+      <TableSelect
+        selectedTable={selectedTable}
+        onTableChange={ (e) => {
+          setSelectedTable(e.target.value)
+        }}
+      />
+      < DataTable data={data}
+        selectedTable={selectedTable} 
+      />
     </div>
   );
-}
+};
 
 export default App;
