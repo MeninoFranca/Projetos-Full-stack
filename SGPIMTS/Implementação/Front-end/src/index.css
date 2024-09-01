@@ -53,7 +53,7 @@ li{
 }
 
 h1 {
-  animation: body 5s ease infinite;
+  color: #eee;
   font-size: 3.2em;
   line-height: 1.1;
 }

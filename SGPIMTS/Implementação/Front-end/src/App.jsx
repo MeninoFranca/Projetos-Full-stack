@@ -3,8 +3,6 @@ import './App.css';
 
 function App() {
   const [clientes, setClientes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchClientes = async () => {
@@ -22,16 +20,22 @@ function App() {
   return (
     <div>
       <h1>Clientes</h1>
-      <ul>
-        {clientes.map(cliente => (
-          <li key={cliente.id}>
-            <strong>Nome:</strong> {cliente.nomeCliente} <br />
-            <strong>Email:</strong> {cliente.emailCliente} <br />
-            <strong>Telefone:</strong> {cliente.telefoneCliente} <br />
-            <strong>Código Sistema:</strong> {cliente.codigoSistema}
-          </li>
-        ))}
-      </ul>
+            <table>
+              <tr>
+                <th>Nome:</th>
+                <th>Email:</th>
+                <th>Telefone:</th>
+                <th>Codigo do sistema:</th>
+              </tr>
+              {clientes.map(cliente => (
+              <tr>
+                <td>{cliente.nomeCliente}</td>
+                <td>{cliente.emailCliente}</td>
+                <td>{cliente.telefoneCliente}</td>
+                <td>{cliente.codigoSistema}</td>
+              </tr> 
+              ))}
+        </table>
     </div>
   );
 }
