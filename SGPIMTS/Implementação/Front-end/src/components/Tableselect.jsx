@@ -1,8 +1,8 @@
 import React from 'react';
 
-const TableSelect = ({ selectedTable, onTableChange }) => {
+const TableSelect = ({ selecaotable, mudancatable }) => {
   return (
-    <select value={selectedTable} onChange={onTableChange}>
+    <select value={selecaotable} onChange={mudancatable}>
       <option value="clientes">Clientes</option>
       <option value="sistemas">Sistemas</option>
       <option value="tipo_sistema">Tipo de Sistema</option>

@@ -1,8 +1,8 @@
 import React from 'react';
 
-const DataTable = ({ data, selectedTable }) => {
+const DataTable = ({ data, selecaotable }) => {
   const renderTable = () => {
-    switch (selectedTable) {
+    switch (selecaotable) {
       case 'clientes':
         return (
           <table>
